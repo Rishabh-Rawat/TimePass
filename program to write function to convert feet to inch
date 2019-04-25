@@ -1,0 +1,12 @@
+#program to write function to convert feet to inch
+def inp():
+    f=int(input("Enter the feet"))
+    return f
+def calc(f):
+    i=f*12
+    return i
+def out(i):
+    print(i,"inches")
+    
+
+out(calc(inp()))
