@@ -36,7 +36,7 @@ if dy==1:
 
 if dy==2:
     if dn%7==0:
-        d=dc[dy+6]
+        d=dc[dy-1]
     elif dn%7==1:
         d=dc[dy]
     elif dn%7==2:
@@ -83,7 +83,7 @@ if dy==4:
         
 if dy==5:
     if dn%7==0:
-        d=dc[dy+6]
+        d=dc[dy-1]
     elif dn%7==1:
         d=dc[dy]
     elif dn%7==2:
@@ -115,7 +115,7 @@ if dy==6:
         
 if dy==7:
     if dn%7==0:
-        d=dc[dy+6]
+        d=dc[dy-1]
     elif dn%7==1:
         d=dc[dy]
     elif dn%7==2:
