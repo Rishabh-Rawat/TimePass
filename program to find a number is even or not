@@ -1,0 +1,6 @@
+#program to find a number is even or not
+n=int(input("Enter the number"))
+if n%2==0:
+    print("True")
+else:
+    print("False")
