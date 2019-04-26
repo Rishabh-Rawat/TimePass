@@ -1,0 +1,12 @@
+#program to find sum if N is positive or negative
+N=int(input("Enter the value of N"))
+s=0
+if N>=0:
+    for i in range(N,2*N+1):
+        s=s+i
+else:
+    for i in range(2*N,N+1):
+        s=s+i
+
+print("Sum =",s)
+    
