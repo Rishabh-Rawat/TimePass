@@ -1,0 +1,3 @@
+#number of seconds in an year
+s=365*24*60*60
+print("Seconds in year",s)
