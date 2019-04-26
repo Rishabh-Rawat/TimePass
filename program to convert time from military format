@@ -1,0 +1,8 @@
+#program to convert time from military format
+t1=int(input("Enter the first time"))
+t2=int(input("Enter the second time"))
+t=t2-t1
+h=t//100
+m=t%100
+print(h,"hours",m,"minutes")
+
