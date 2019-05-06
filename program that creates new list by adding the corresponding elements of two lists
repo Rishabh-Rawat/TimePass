@@ -1,0 +1,7 @@
+#program that creates new list by adding the corresponding elements of two lists
+L=eval(input("Enter the first list"))
+M=eval(input("Enter the second list"))
+N=[]
+for i in range(len(L)):
+    N.append(L[i]+M[i])
+print(N)
