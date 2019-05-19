@@ -1,0 +1,52 @@
+#linear equation in three variable calculator 
+
+print("Format of Linear equations in three vaiables")
+print("ax+by+cz=d")
+print("Please enter the values in accordance with this format")
+
+import numpy as np
+E1=eval(input("Enter the coefficients of first equation seperated by comma"))
+E2=eval(input("Enter the coefficients of second equation seperated by comma"))
+E3=eval(input("Enter the coefficients of third equation seperated by comma"))
+E4=eval(input("Enter the constants of three equations seperated by comma"))
+x1,y1,z1=E1
+x2,y2,z2=E2
+x3,y3,z3=E3
+c1,c2,c3=E4
+
+E1=[x1,y1,z1]
+E2=[x2,y2,z2]
+E3=[x3,y3,z3]
+A=np.array([E1,E2,E3])
+
+E1=[c1,y1,z1]
+E2=[c2,y2,z2]
+E3=[c3,y3,z3]
+A1=np.array([E1,E2,E3])
+
+E1=[x1,c1,z1]
+E2=[x2,c2,z2]
+E3=[x3,c3,z3]
+A2=np.array([E1,E2,E3])
+
+E1=[x1,y1,c1]
+E2=[x2,y2,c2]
+E3=[x3,y3,c3]
+A3=np.array([E1,E2,E3])
+
+
+D=round(np.linalg.det(A))
+D1=round(np.linalg.det(A1))
+D2=round(np.linalg.det(A2))
+D3=round(np.linalg.det(A3))
+
+print(D,D1,D2,D3)
+
+if D==0 and D1==0 and D2==0 and D3==0:
+    print("Infinitely many solutions ")
+elif D==0 and (D1!=0 or D2!=0 or D3!=0):
+    print("System of solutions is inconsistent i.e no solution")
+else:
+    print("x=",D1/D)
+    print("y=",D2/D)
+    print("z=",D3/D)
