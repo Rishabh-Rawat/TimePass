@@ -1,10 +1,11 @@
 #linear equation in three variable calculator 
 
+import numpy as np
 print("Format of Linear equations in three vaiables : ax+by+cz=d")
 print("where, a,b,c are coefficients | x,y,z are variables | d is constant")
 print("Please enter the values in accordance with this format")
 
-import numpy as np
+
 E1=eval(input("Enter the coefficients of first equation seperated by comma"))
 E2=eval(input("Enter the coefficients of second equation seperated by comma"))
 E3=eval(input("Enter the coefficients of third equation seperated by comma"))
