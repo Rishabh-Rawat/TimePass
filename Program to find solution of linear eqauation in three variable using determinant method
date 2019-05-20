@@ -1,4 +1,4 @@
-#linear equation in three variable calculator 
+#linear equation in three variable calculator using determinant method
 
 import numpy as np
 print("Format of Linear equations in three vaiables : ax+by+cz=d")
