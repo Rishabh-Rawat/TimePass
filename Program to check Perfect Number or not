@@ -1,9 +1,0 @@
-n=int(input("Enter the number"))
-n=str(n)
-s=0
-for i in n:
-    s=s+(int(i)**3)
-if s==int(n):
-    print("Perfect number")
-else:
-    print("Not perfect number")
