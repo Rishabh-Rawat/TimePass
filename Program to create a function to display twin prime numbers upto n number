@@ -1,0 +1,22 @@
+#function to display twin prime numbers upto n number
+#twin prime numbers are prime numbers whith difference 2
+def prime(a):
+     c=0
+     for i in range(2,a):
+         if a%i==0:
+             c=1
+     if c==1:
+         return False
+     else:
+         return True
+        
+def twinPrime(n):
+    for i in range(2,n+1):
+        if prime(i)==True:    
+            for j in range(i,n+1):
+                if prime(j)==True:
+                    if (j-i)==2:
+                        print(i,j)
+
+n=int(input("Enter the last limit"))
+twinPrime(n)
