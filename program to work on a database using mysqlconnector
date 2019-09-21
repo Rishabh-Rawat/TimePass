@@ -1,0 +1,23 @@
+import mysql.connector
+db=input("Enter the database")
+mycon=mysql.connector.connect(host="localhost",user="root",database=db,passwd="CHUTIYA#1")
+if mycon.is_connected():
+    print("Successfully Connected to Database")
+else:
+    print("Connection to Database failed")
+tb=input("Enter the table to work in this session")
+cur=mycon.cursor()
+cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+print("Fields available in the table")
+data=cur.fetchall()
+for i in range(len(data)):
+    print("\t",i+1,".  ",data[i][0],sep="")
+ch=input("Enter the field name to work upon")
+cur.execute("select {} from {}".format(ch,tb))
+print("Availabes values in the given field")
+for i in cur:
+    print(i[0])
+cur.execute("select * from {}".format(tb))
+print("All records")
+for i in cur:
+    print(i)
