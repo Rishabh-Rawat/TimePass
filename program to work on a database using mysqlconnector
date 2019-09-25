@@ -97,8 +97,11 @@ def delete():
 
     
 import mysql.connector
-db=input("Enter the name of database to work in this session")
-mycon=mysql.connector.connect(host="localhost",user="root",database=db,passwd="")
+hst=input("Enter the host")
+usr=input("Enter tne user")
+pd=input("Enter the password")
+db=input("Enter the database")
+mycon=mysql.connector.connect(host=hst,user=usr,database=db,passwd=pd)
 if mycon.is_connected():
     print("Successfully Connected to Database")
 else:
