@@ -44,6 +44,11 @@ def modify():
     print("All records given below")
     for i in cur:
         print(i)
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+    print("Columns available in the table")
+    data=cur.fetchall()
+    for i in range(len(data)):
+        print("\t",i+1,".  ",data[i][0],sep="")
     w=input("Enter the column name using which you want to find the record")
     print("Enter the value of that",w,end=" ")
     wi=input()
@@ -66,16 +71,19 @@ def delete():
     cur.execute("Delete from {} where {}='{}'".format(tb,w,wi))
     mycon.commit()
     print("Record successfully deleted")
-
+    
+    
 import mysql.connector
-db=input("Enter the database")
-mycon=mysql.connector.connect(host="localhost",user="root",database=db,passwd="CHUTIYA#1")
+db=input("Enter the name of database to work in this session")
+mycon=mysql.connector.connect(host="localhost",user="root",database=db,passwd="")
 if mycon.is_connected():
     print("Successfully Connected to Database")
 else:
     print("Connection to Database failed")
 tb=input("Enter the table to work in this session")
 cur=mycon.cursor()
+
+
 
 while True:
     print()
@@ -104,3 +112,5 @@ while True:
     else:
         print("Invalid choice entered")
 print("Thanks for using our services")
+
+
