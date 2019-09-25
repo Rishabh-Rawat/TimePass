@@ -9,6 +9,12 @@ def insert():
     cur.execute("Insert into job values({})".format(st))
     mycon.commit()
     print("Record successfully inserted")
+    cur.execute("Select * from {}".format(tb))
+    data=cur.fetchall()
+    print()
+    print("Updated Table given below")
+    for i in data:
+        print(i)
     
     
 def display():
@@ -62,6 +68,12 @@ def modify():
     cur.execute("update {} set {}='{}' where {}='{}'".format(tb,ch,nw,w,wi))
     mycon.commit()
     print("Record sucessfully modified")
+    cur.execute("Select * from {}".format(tb))
+    data=cur.fetchall()
+    print()
+    print("Updated Table given below")
+    for i in data:
+        print(i)
     
     
 def delete():
@@ -76,7 +88,13 @@ def delete():
     cur.execute("Delete from {} where {}='{}'".format(tb,w,wi))
     mycon.commit()
     print("Record successfully deleted")
-    
+    cur.execute("Select * from {}".format(tb))
+    data=cur.fetchall()
+    print()
+    print("Updated Table given below")
+    for i in data:
+        print(i)
+
     
 import mysql.connector
 db=input("Enter the name of database to work in this session")
