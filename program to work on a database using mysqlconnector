@@ -35,6 +35,11 @@ def search():
     
     
 def modify():
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+    print("Fields available in the table")
+    data=cur.fetchall()
+    for i in range(len(data)):
+        print("\t",i+1,".  ",data[i][0],sep="")
     ch=input("Enter the field name to modify")
     cur.execute("select {} from {}".format(ch,tb))
     print("Availabes values in the given field")
@@ -112,5 +117,3 @@ while True:
     else:
         print("Invalid choice entered")
 print("Thanks for using our services")
-
-
