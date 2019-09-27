@@ -6,7 +6,7 @@ def insert():
         print("\t",i+1,".  ",data[i][0],sep="")
     print("Enter the values in corresponding datatype seperated by comma in the format",data,end=" ")
     st=input()
-    cur.execute("Insert into job values({})".format(st))
+    cur.execute("Insert into {} values({})".format(tb,st))
     mycon.commit()
     print("Record successfully inserted")
     cur.execute("Select * from {}".format(tb))
@@ -113,8 +113,16 @@ try:
     print("Currently activated table you working on :")
     print(cur.fetchall())
     
+except:
+    print("Something's wrong, I can feel it. Just a feeling I\'ve got, like something\'s about to happen, but I don\'t know what If that means, what I think it means, we\'re in trouble, big trouble")
+    print("Possible causes of error:")
+    print("Invalid username entered")
+    print("Invalid host entered")
+    print("Invalid password entered")
+    print("Invalid database entered")
+    print("Invalid table name entered")
     
-    
+else:
     while True:
         print()
         print("What do you want to do with your table?")
@@ -142,11 +150,3 @@ try:
         else:
             print("Invalid choice entered")
     print("Thanks for using our services")
-except:
-    print("Something's wrong, I can feel it. Just a feeling I\'ve got, like something\'s about to happen, but I don\'t know what If that means, what I think it means, we\'re in trouble, big trouble")
-    print("Possible causes of error:")
-    print("Invalid username entered")
-    print("Invalid host entered")
-    print("Invalid password entered")
-    print("Invalid database entered")
-    print("Invalid table name entered")
