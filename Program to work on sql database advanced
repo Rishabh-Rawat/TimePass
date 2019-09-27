@@ -116,11 +116,11 @@ try:
 except:
     print("Something's wrong, I can feel it. Just a feeling I\'ve got, like something\'s about to happen, but I don\'t know what If that means, what I think it means, we\'re in trouble, big trouble")
     print("Possible causes of error:")
-    print("Invalid username entered")
-    print("Invalid host entered")
-    print("Invalid password entered")
-    print("Invalid database entered")
-    print("Invalid table name entered")
+    print(">> Invalid username entered")
+    print(">> Invalid host entered")
+    print(">> Invalid password entered")
+    print(">> Invalid database entered")
+    print(">> Invalid table name entered")
     
 else:
     while True:
