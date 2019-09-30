@@ -6,7 +6,7 @@ def insert():
         print("\t",i+1,".  ",data[i][0],sep="")
     print("Enter the values in corresponding datatype seperated by comma in the format",data,end=" ")
     st=input()
-    cur.execute("Insert into job values({})".format(st))
+    cur.execute("Insert into {} values({})".format(tb,st))
     mycon.commit()
     print("Record successfully inserted")
     cur.execute("Select * from {}".format(tb))
