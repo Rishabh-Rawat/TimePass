@@ -94,6 +94,13 @@ def delete():
     print("Updated Table given below")
     for i in data:
         print(i)
+        
+def create():
+    print("To create a new table")
+    t=input("Enter the table name")
+    c=input("Enter the column name<space>data type(size),<space>[constraint if any] in the same format")
+    cur.execute("Create table {} ({})".format(t,c))
+    print("Table successfully created")
 
     
 import mysql.connector
@@ -107,7 +114,14 @@ try:
         print("Successfully Connected to Database")
     else:
         print("Connection to Database failed")
-    tb=input("Enter the table to work in this session")
+    print("If you want to create a new table enter Yes otherwise No")
+    k=input("Enter your choice").lower()
+    if k=="yes":
+        create()
+    else:
+        print("OK Continue with your old table")
+    print()
+    tb=input("Enter the table name to work in this session")
     cur=mycon.cursor()
     cur.execute("Select * from {}".format(tb))
     print("Currently activated table you working on :")
