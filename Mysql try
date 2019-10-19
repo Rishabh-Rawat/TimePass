@@ -1,0 +1,333 @@
+def insert():
+
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+
+    print("Columns available in the table")
+
+    data=cur.fetchall()
+
+    for i in range(len(data)):
+
+        print("\t",i+1,".  ",data[i][0],sep="")
+
+    print("Enter the values in corresponding datatype seperated by comma in the format",data,end=" ")
+
+    st=input()
+
+    cur.execute("Insert into {} values({})".format(tb,st))
+
+    mycon.commit()
+
+    print("Record successfully inserted")
+
+    cur.execute("Select * from {}".format(tb))
+
+    data=cur.fetchall()
+
+    print()
+
+    print("Updated Table given below")
+
+    for i in data:
+
+        print(i)
+
+    
+
+    
+
+def display():
+
+    print("To display all records enter ALL otherwise")
+
+    n=input("Enter the number of records to display").upper()
+
+    cur.execute("Select * from {}".format(tb))
+
+    if n=="ALL":
+
+        print(cur.fetchall())
+
+    else:
+
+        print(cur.fetchmany(int(n)))
+
+    
+
+    
+
+def search():
+
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+
+    print("Columns available in the table")
+
+    data=cur.fetchall()
+
+    for i in range(len(data)):
+
+        print("\t",i+1,".  ",data[i][0],sep="")
+
+    w=input("Enter the column name using which you want to find the record")
+
+    print("Enter the value of that",w,end=" ")
+
+    wi=input()
+
+    cur.execute("select * from {} where {}='{}'".format(tb,w,wi))
+
+    print(cur.fetchall())
+
+    
+
+    
+
+def modify():
+
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+
+    print("Fields available in the table")
+
+    data=cur.fetchall()
+
+    for i in range(len(data)):
+
+        print("\t",i+1,".  ",data[i][0],sep="")
+
+    ch=input("Enter the field name to modify")
+
+    cur.execute("select {} from {}".format(ch,tb))
+
+    print("Availabes values in the given field")
+
+    for i in cur:
+
+        print("\t\t\t",i[0])
+
+    cur.execute("select * from {}".format(tb))
+
+    print("All records given below")
+
+    for i in cur:
+
+        print(i)
+
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+
+    print("Columns available in the table")
+
+    data=cur.fetchall()
+
+    for i in range(len(data)):
+
+        print("\t",i+1,".  ",data[i][0],sep="")
+
+    w=input("Enter the column name using which you want to find the record")
+
+    print("Enter the value of that",w,end=" ")
+
+    wi=input()
+
+    print("Enter the new value of",ch,end="")
+
+    nw=input()
+
+    cur.execute("update {} set {}='{}' where {}='{}'".format(tb,ch,nw,w,wi))
+
+    mycon.commit()
+
+    print("Record sucessfully modified")
+
+    cur.execute("Select * from {}".format(tb))
+
+    data=cur.fetchall()
+
+    print()
+
+    print("Updated Table given below")
+
+    for i in data:
+
+        print(i)
+
+    
+
+    
+
+def delete():
+
+    cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
+
+    print("Columns available in the table")
+
+    data=cur.fetchall()
+
+    for i in range(len(data)):
+
+        print("\t",i+1,".  ",data[i][0],sep="")
+
+    w=input("Enter the column name using which you want to find the record")
+
+    print("Enter the value of that",w,end=" ")
+
+    wi=input()
+
+    cur.execute("Delete from {} where {}='{}'".format(tb,w,wi))
+
+    mycon.commit()
+
+    print("Record successfully deleted")
+
+    cur.execute("Select * from {}".format(tb))
+
+    data=cur.fetchall()
+
+    print()
+
+    print("Updated Table given below")
+
+    for i in data:
+
+        print(i)
+
+        
+
+def create():
+
+    print("To create a new table")
+
+    t=input("Enter the table name")
+
+    c=input("Enter the column name<space>data type(size),<space>[constraint if any] in the same format")
+
+    cur.execute("Create table {} ({})".format(t,c))
+
+    print("Table successfully created")
+
+    
+
+    return t
+
+    
+
+import mysql.connector
+
+try:
+
+    hst=input("Enter the host")
+
+    usr=input("Enter tne user")
+
+    pd=input("Enter the password")
+
+    db=input("Enter the database")
+
+    mycon=mysql.connector.connect(host=hst,user=usr,database=db,passwd=pd)
+
+    
+
+    cur=mycon.cursor()
+
+    if mycon.is_connected():
+
+        print("Successfully Connected to Database")
+
+    
+
+    try:
+
+        print("OK Continue with your old table")
+
+        tb=input("Enter the table name to work in this session")
+
+        cur.execute("Select * from {}".format(tb))
+
+        print("Currently activated table you working on :")
+
+        print(cur.fetchall())
+
+       
+
+    except:
+
+    	print("No such table present")    	print("To create a new table enter 'yes' otherwise press any key", end=' ')
+
+    	z=input("Enter your choice").lower
+
+    	if z=='yes' :
+
+    		tb=create()
+
+    
+
+except:
+
+    print("Something's wrong, I can feel it. Just a feeling I\'ve got, like something\'s about to happen, but I don\'t know what If that means, what I think it means, we\'re in trouble, big trouble")
+
+    print("Possible causes of error:")
+
+    print(">> Invalid username entered")
+
+    print(">> Invalid host entered")
+
+    print(">> Invalid password entered")
+
+    print(">> Invalid database entered")
+
+    
+
+else:
+
+    while True:
+
+        print()
+
+        print("What do you want to do with your table?")
+
+        print("\t\t1. Insert Record")
+
+        print("\t\t2. Display Record")
+
+        print("\t\t3. Search Record")
+
+        print("\t\t4. Modify Record")
+
+        print("\t\t5. Delete Recod")
+
+        print("\t\t6. Exit")
+
+        print()
+
+        ch=int(input("Enter the choice"))
+
+        if ch==1:
+
+            insert()
+
+        elif ch==2:
+
+            display()
+
+        elif ch==3:
+
+            search()
+
+        elif ch==4:
+
+            modify()
+
+        elif ch==5:
+
+            delete()
+
+        elif ch==6:
+
+             mycon.close()
+
+             break
+
+        else:
+
+            print("Invalid choice entered")
+
+    print("Thanks for using our services")
