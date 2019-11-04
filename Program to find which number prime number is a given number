@@ -1,0 +1,42 @@
+def prime(a):
+
+    for j in range(2,a):
+
+        if a%j==0:
+
+            return False
+
+    else:
+
+        return True
+
+try:
+
+    n=int(input("Enter the prime number"))
+
+    c=1
+
+    if prime(n):
+
+        if n==1:
+
+            print("Abe Chutiye, 1 is neither prime nor composite")
+
+        else:
+
+            for i in range(3,n+1):
+
+                if prime(i):
+
+                    c=c+1
+
+            print("Rank of prime number =",c)
+
+    else:
+
+        print("Prime Number daal be Chutiye")
+
+except:
+
+    print("Valid number daal be Chutiye")
+
