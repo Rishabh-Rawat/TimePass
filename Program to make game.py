@@ -32,6 +32,8 @@ def key():
 
 
 def game():
+    global name
+    name=input("Enter player's name")
     print("LET'S SEE IF YOU CAN GUESS A FOUR DIGIT NUMBER WITH NON-REPEATING DIGITS\n")
     k=key()                                                     # k variable stores the value of the key/answer
     global result
@@ -77,25 +79,14 @@ def game():
     print(message)
 
 #_main_
-name=input("Enter player's name")
 game()
 while True:
-    print("\nDo you want to play again?")
-    ch=input("\nEnter Y for yes or N for no").upper()
-    if ch=='Y':
-        game()
-    elif ch=='N':
-        mycon=mysql.connector.connect(host='localhost',user='root',database='rishabh',passwd='CHUTIYA#1')
-        cur=mycon.cursor()
-        ch=input("\nEnter Y to see previous winners' scores otherwise press any other key").upper()
-        if ch=='Y':
-            cur.execute("select * from record order by tries")
-            for i in cur.fetchall():
-                print(i[0],"had completed this game in",i[1],"tries")
         if result=='W':
             print("\nDo you want to save your last game score ?\n")
-            ch=input("Enter Y for yes otherwise press any other key to end the game").upper()
+            ch=input("Enter Y for yes otherwise press any other key ").upper()
             if ch=='Y':
+                mycon=mysql.connector.connect(host='localhost',user='root',database='rishabh',passwd='')
+                cur=mycon.cursor()
                 try:
                     cur.execute("insert into record values('{}',{})".format(name,tries))
                     mycon.commit()
@@ -105,9 +96,19 @@ while True:
                     mycon.commit()
                 else:
                     print("Score Saved")
-            else:
-                print("\nTHANKS FOR PLAYING")
-                break
-        
-    else:
-        print("Invalid choice")
+        ch=input("\nEnter Y to see previous winners' scores otherwise press any other key").upper()
+        if ch=='Y':
+            mycon=mysql.connector.connect(host='localhost',user='root',database='rishabh',passwd='')
+            cur=mycon.cursor()
+            try:
+                cur.execute("select * from record order by tries")
+                for i in cur.fetchall():
+                    print(i[0],"had completed this game in",i[1],"tries")
+            except:
+                print("NO ONE HAD EVER COMPLETED THIS GAME")
+        ch=input("Enter Y to play this game again otherwise press any other key")
+        if ch=='Y':
+            game()
+        else:
+            print("THANKS FOR PLAYING")
+            break
