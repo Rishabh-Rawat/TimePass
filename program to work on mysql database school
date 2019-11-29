@@ -1,3 +1,5 @@
+import mysql.connector
+
 def insert():
     cur.execute("select column_name from information_schema.columns where table_name='{}'".format(tb))
     print("Columns available in the table")
@@ -9,13 +11,7 @@ def insert():
     cur.execute("Insert into {} values({})".format(tb,st))
     mycon.commit()
     print("Record successfully inserted")
-    cur.execute("Select * from {}".format(tb))
-    data=cur.fetchall()
-    print()
-    print("Updated Table given below")
-    for i in data:
-        print(i)
-    
+
     
 def display():
     print("To display all records enter ALL otherwise")
@@ -68,12 +64,6 @@ def modify():
     cur.execute("update {} set {}='{}' where {}='{}'".format(tb,ch,nw,w,wi))
     mycon.commit()
     print("Record sucessfully modified")
-    cur.execute("Select * from {}".format(tb))
-    data=cur.fetchall()
-    print()
-    print("Updated Table given below")
-    for i in data:
-        print(i)
     
     
 def delete():
@@ -88,20 +78,10 @@ def delete():
     cur.execute("Delete from {} where {}='{}'".format(tb,w,wi))
     mycon.commit()
     print("Record successfully deleted")
-    cur.execute("Select * from {}".format(tb))
-    data=cur.fetchall()
-    print()
-    print("Updated Table given below")
-    for i in data:
-        print(i)
 
     
-import mysql.connector
-hst=input("Enter the host")
-usr=input("Enter tne user")
-pd=input("Enter the password")
-db=input("Enter the database")
-mycon=mysql.connector.connect(host=hst,user=usr,database=db,passwd=pd)
+#__main__
+mycon=mysql.connector.connect(host="localhost",user="root",database="Rishabh",passwd="")
 if mycon.is_connected():
     print("Successfully Connected to Database")
 else:
